@@ -11,6 +11,7 @@
     href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"
   />
   <body>
+    <button onclick="onExport()">EXCEL</button>
     <div id="table"></div>
   </body>
   <style>
@@ -59,77 +60,7 @@
     }
   </style>
   <script src="https://unpkg.com/gridjs/dist/gridjs.umd.js"></script>
-  <script class="container">
-    new gridjs.Grid({
-      columns: [
-        "ลำดับ",
-        "สังกัด",
-        "ตำแหน่ง",
-        "กอง",
-        "ฝ่าย",
-        "ชื่อ - นามสกุล",
-        "เพศ",
-        "อายุ",
-        "น้ำหนัก",
-        "ส่วนสูง",
-        "BMI",
-        "สัดส่วน",
-        "โรคประจำตัว",
-        "โรคอื่นๆ",
-        "ท่านเคยเจ็บป่วยด้วยโรคจากการทำงาน",
-        {
-          name: "คะแนนประเมินความเครียด",
-          formatter: (cell) => {
-            if(isNaN(cell)){
-                return  gridjs.html(`<div>-</div>`);
-            }
-            if (Number(cell) < 30) {
-              return gridjs.html(`<div style="color:#339900">${cell}</div>`);
-            }else if(Number(cell) >= 30 && Number(cell)<= 50) {
-              return gridjs.html(`<div style="color:#FFCC00">${cell}</div>`);
-            } else {
-                return gridjs.html(`<div style="color:#CC0000">${cell}</div>`);
-            }
-            }
-        },
-      ],
-      server: {
-        url: "https://smartcity-pakpoon-api.herokuapp.com/employee/employeeAll",
-        then: (data) =>
-          data.map((employee, i) => {
-            let Strain = 0;
-            for (let j = 1; j <= 20; j++) {
-              Strain += Number(employee[`Strain${j}`]);
-            }
-            return [
-              i + 1,
-              employee.affiliation,
-              employee.position,
-              employee.division,
-              employee.cotton,
-              `${employee.prefix}${employee.name}  ${employee.lastname}`,
-              employee.sex,
-              employee.age,
-              employee.weight,
-              employee.height,
-              employee.BMI,
-              employee.proportion,
-              employee.congenital_disease,
-              employee.other_congenital_disease,
-              employee.sick,
-              Strain,
-            ];
-          }),
-      },
-      search: {
-        enabled: true,
-      },
-      sort: true,
-      pagination: {
-        enabled: true,
-        limit: 50,
-        summary: false,
-      },
-    }).render(document.getElementById("table"));
-  </script>
-</html>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js" integrity="sha512-r22gChDnGvBylk90+2e/ycr3RVrDi8DIOkIGNhJlKfuyQM4tIRAI062MaV8sfjQKYVGjOBaZBOA87z+IhZE9DA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./table.js"></script>
+  </html>
