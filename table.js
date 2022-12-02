@@ -135,7 +135,7 @@ new gridjs.Grid({
   sort: true,
   pagination: {
     enabled: true,
-    limit: 500,
+    limit: 1000,
     summary: false,
   },
 }).render(document.getElementById("table"));
