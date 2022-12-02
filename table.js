@@ -67,7 +67,7 @@ new gridjs.Grid({
     },
   ],
   server: {
-    url: "https://smartcity-pakpoon-api.herokuapp.com/employee/employeeAll",
+    url: "https://smartcity.onrender.com/employee/employeeAll",
     then: (data) =>
       data.map((employee, i) => {
         let Strain = 0;
