@@ -176,7 +176,7 @@ new gridjs.Grid({
           employee.Employmenttype, 
           employee.division,
           employee.prefix,
-          `${employee.prefix}${employee.name}  ${employee.lastname}`,
+          `${employee.name}  ${employee.lastname}`,
           employee.IDcard,
           employee.nickname,
           employee.status,
